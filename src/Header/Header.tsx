@@ -6,16 +6,17 @@ import fortuneteller from '../assets/fortunetellerbanner5.png'
 export function Header() {
   return (
     <Flex
-      shadow={"md"}
+      shadow={"xl"}
       align={"end"}
       w={'full'}
       h={'50vh'}
       backgroundImage={fortuneteller}
       backgroundSize={'stretch'}
-      backgroundPosition={'center center'}>
+      backgroundPosition={'center center'}
+      rounded={'6'}>
       <VStack
         justify={'start'}>
-        <Stack maxW={'2xl'} align={'flex-start'} spacing={6}>
+        <Stack maxW={'2xl'} align={'flex-start'}>
           <Text
             color={'white'}
             fontWeight={700}

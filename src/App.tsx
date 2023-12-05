@@ -46,6 +46,7 @@ const App: FC = () => {
     <div className="App">
       <Container maxW='container.xl' centerContent>
         <Header />
+
         <EightBallCard>
           <h1>Welcome to "Ask the Magic 8-ball"</h1>
           <EightBall>
