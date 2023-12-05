@@ -46,9 +46,18 @@ const App: FC = () => {
         <Header />
         <EightBallCard>
           <EightBallAnimation>
-            <div style={{ backgroundImage: `url(${magicBall})`, backgroundRepeat: 'no-repeat', height: '50vh', width: '50vh', alignItems: 'center' }}>
+            <div
+              style={{
+                backgroundImage: `url(${magicBall})`,
+                backgroundRepeat: "no-repeat",
+                height: "50vh",
+                width: "50vh",
+                alignItems: "center",
+                position: "relative",
+              }}
+            >
               <div onClick={handleClick}>
-                <p className="answer">{answer}</p>
+                <p>{answer}</p>
               </div>
             </div>
           </EightBallAnimation>
@@ -58,7 +67,7 @@ const App: FC = () => {
             className="question"
             value={userQuestion ?? ""}
             onChange={handleChange}
-            width={'md'}
+            width={"md"}
           />
         </EightBallCard>
       </Container>
