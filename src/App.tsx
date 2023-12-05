@@ -1,8 +1,6 @@
 /*
 TODO:
 - Update UI
-  - Wrap header and card in container
-  - Align everything to center 
   - Display full eight ball
   - Add spacing between input and eightball
   - Change eight ball image 
@@ -20,15 +18,15 @@ TODO:
 import { ChangeEventHandler, FC, useState } from "react";
 import { getAnswer } from "./Answers/answer";
 import { Header } from "./Header/Header";
-import EightBall from "./EightBall/EightBall";
 import { EightBallCard } from "./EightBall/EightBallCard";
-import magicBall from "./assets/8ball1.png";
+import EightBallAnimation from "./EightBall/EightBall";
 import { Container, Input } from "@chakra-ui/react";
+import magicBall from "./assets/8ball1.png";
 import "./App.css";
 
 const App: FC = () => {
   const [userQuestion, setUserInput] = useState<string | null>("");
-  const [answer, setAnswer] = useState<string | null>("");
+  const [answer, setAnswer] = useState<string | null>("Click here");
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     e.preventDefault();
@@ -44,24 +42,23 @@ const App: FC = () => {
 
   return (
     <div className="App">
-      <Container maxW='container.xl' centerContent>
+      <Container maxW="container.xl" centerContent>
         <Header />
-
         <EightBallCard>
-          <h1>Welcome to "Ask the Magic 8-ball"</h1>
-          <EightBall>
-            <div style={{ backgroundImage: `url(${magicBall})` }}>
+          <EightBallAnimation>
+            <div style={{ backgroundImage: `url(${magicBall})`, backgroundRepeat: 'no-repeat', height: '50vh', width: '50vh', alignItems: 'center' }}>
               <div onClick={handleClick}>
-                answer ? <p className="answer">{answer}</p> :{" "}
+                <p className="answer">{answer}</p>
               </div>
             </div>
-          </EightBall>
+          </EightBallAnimation>
           <Input
             type="text"
             placeholder="Ask your question here then tap the eight ball"
             className="question"
             value={userQuestion ?? ""}
             onChange={handleChange}
+            width={'md'}
           />
         </EightBallCard>
       </Container>
