@@ -1,4 +1,4 @@
-enum possibleAnswers {
+export enum possibleAnswers {
   "It is certain",
   "It is decidedly so",
   "Without a doubt",
@@ -20,13 +20,3 @@ enum possibleAnswers {
   "Outlook not so good",
   "No",
 }
-
-const getAnswer = (): string => {
-  const answers = Object.keys(possibleAnswers).filter((item) => {
-    return isNaN(Number(item));
-  });
-  const randomIndex = Math.floor(Math.random() * answers.length);
-  return answers[randomIndex];
-};
-
-export { getAnswer };

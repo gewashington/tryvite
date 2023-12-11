@@ -1,4 +1,22 @@
 .App {
+
+  @keyframes animateMounting {
+ 0% {
+    opacity: 0;
+ }
+
+ 100% {
+    opacity: 1;
+ }
+}
+
+.textOnClick {
+  transition-timing-function: ease-in-out;
+  color: red;
+  font-size: 30px;
+  animation: animateMounting .4s;
+}
+
   /* display:block;
   margin-left: auto;
   margin-right: auto;

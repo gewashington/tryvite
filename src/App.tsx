@@ -1,12 +1,9 @@
 /*
 TODO:
 - Update UI
-  - Display full eight ball
-  - Add spacing between input and eightball
   - Change eight ball image 
-  - Add answer to eightball  
-  - Fix image text 
   - Change / fix image 
+  - Add fonts to text
 - Add tests:
   * Empty Field
   * Adding new answer to 8ball responses 
@@ -16,28 +13,28 @@ TODO:
 */
 
 import { ChangeEventHandler, FC, useState } from "react";
-import { getAnswer } from "./Answers/answer";
+import { getAnswer } from "./Responses/answer";
 import { Header } from "./Header/Header";
 import { EightBallCard } from "./EightBall/EightBallCard";
-import EightBallAnimation from "./EightBall/EightBall";
-import { Container, Input } from "@chakra-ui/react";
+import EightBallAnimation from "./EightBall/EightBallAnimation";
+import { Container } from "@chakra-ui/react";
 import magicBall from "./assets/8ball1.png";
 import "./App.css";
+import EightBallButton from "./EightBall/EightBallButton";
+import UserInput from "./UserInput";
+
 
 const App: FC = () => {
   const [userQuestion, setUserInput] = useState<string | null>("");
-  const [answer, setAnswer] = useState<string | null>("Click here");
+  // const [errors, setError] = useState<string | null>(null);
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
-    e.preventDefault();
     setUserInput(e.target.value);
+    console.log("HANDLE CHANGE ON:", userQuestion)
   };
 
-  const handleClick = () => {
-    if (userQuestion) {
+  const clearInput = () => {
       setUserInput("");
-      setAnswer(getAnswer());
-    }
   };
 
   return (
@@ -49,26 +46,17 @@ const App: FC = () => {
             <div
               style={{
                 backgroundImage: `url(${magicBall})`,
-                backgroundRepeat: "no-repeat",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
                 height: "50vh",
                 width: "50vh",
-                alignItems: "center",
-                position: "relative",
               }}
             >
-              <div onClick={handleClick}>
-                <p>{answer}</p>
-              </div>
+              <EightBallButton question={userQuestion} getNewAnswer={getAnswer} handleClick={clearInput} />
             </div>
           </EightBallAnimation>
-          <Input
-            type="text"
-            placeholder="Ask your question here then tap the eight ball"
-            className="question"
-            value={userQuestion ?? ""}
-            onChange={handleChange}
-            width={"md"}
-          />
+          <UserInput userInput={userQuestion} handleChange={handleChange} />
         </EightBallCard>
       </Container>
     </div>
